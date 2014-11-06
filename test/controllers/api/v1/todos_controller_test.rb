@@ -11,8 +11,8 @@ class Api::V1::TodosControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should get updated" do
-    get :updated
+  test "should get update" do
+    get :update
     assert_response :success
   end
 
