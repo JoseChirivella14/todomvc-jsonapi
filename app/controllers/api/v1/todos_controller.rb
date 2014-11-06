@@ -1,33 +1,21 @@
 class API::V1::TodosController < ActionController::API
   before_filter :todo_params, only: [:new, :show, :update, :destroy]
   def index
-    @todos = Todo.all
-    render json: @todos
+    render json: Todo.all
   end
 
   def new
     @todos = Todo.new
   end
 
-  def show
-    @todos = Todo.find(params[:id])
-  end
-
   def create
-    @todo = Todo.new(todo_params)
-    if @todo.save
-      render json: @todo.as_json, status: :created, location: api_v1_todo_path(@todo)
-    else
-      render json: { errors: @todo.errors }, status: :bad_request
-    end
+    @todo = Todo.create!(todo_params)
+    render json: [@todos], status: 201, location: api_v1_todo_url(@todo)
   end
 
   def update
-    if @todo.update(todo_params)
-      render json: @todo, status: :ok
-    else
-      render json: { errors: @voter.errors }, status: :bad_request
-    end
+    @todo = Todo.find(params[:id])
+    render json: @todo, status: 201
   end
 
   def destroy
@@ -39,6 +27,6 @@ class API::V1::TodosController < ActionController::API
   private
 
   def todo_params
-    params.permit(:title, :completed)
+    params.permit(:title, :completed, :order)
   end
 end
