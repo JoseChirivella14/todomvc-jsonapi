@@ -1,2 +1,3 @@
 json.id @todo.id
-json.name @todo.title
+json.title @todo.title
+json.completed @todo.completed
