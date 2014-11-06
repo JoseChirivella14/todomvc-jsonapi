@@ -1,5 +1,35 @@
 Rails.application.routes.draw do
   namespace :api do
+  namespace :v1 do
+    get 'todos/new'
+    end
+  end
+
+  namespace :api do
+  namespace :v1 do
+    get 'todos/create'
+    end
+  end
+
+  namespace :api do
+  namespace :v1 do
+    get 'todos/updated'
+    end
+  end
+
+  namespace :api do
+  namespace :v1 do
+    get 'todos/destroy'
+    end
+  end
+
+  namespace :api do
+  namespace :v1 do
+    get 'todos/index'
+    end
+  end
+
+  namespace :api do
     namespace :v1 do
       resources :todos
     end
